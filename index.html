@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>БУЛЬБА: бабл-ти и мочи. Встряхни свой перерыв!</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧋</text></svg>">
+<style>
+/* === ПАЛИТРА И БАЗА === */
+:root{--bg:#120812;--card:#221126;--pink:#ff5fa8;--pink2:#ffb3d6;--cream:#ffeef7;--mint:#8df2c8;--lilac:#b98cff}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--cream);font:16px/1.6 "Segoe UI",Verdana,sans-serif;overflow-x:hidden}
+/* заголовки набираем системным тяжёлым шрифтом, чтобы выглядеть как стикерпак */
+h1,h2,h3,.logo{font-family:"Arial Black","Segoe UI",Arial,sans-serif;text-transform:uppercase;letter-spacing:.5px;line-height:1.12}
+h2{font-size:34px;margin-bottom:8px}
+h2 em{font-style:normal;color:var(--pink)}
+.sub{color:#c9a8bd;max-width:560px;margin-bottom:36px}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+section{padding:70px 0}
+/* === КНОПКИ === */
+.btn{display:inline-block;background:var(--pink);color:#2b0718;font-weight:800;font-size:16px;padding:15px 32px;border-radius:999px;text-decoration:none;border:none;cursor:pointer;transition:.25s}
+.btn:hover{transform:translateY(-4px) scale(1.03);background:#ff7ab9;box-shadow:0 12px 30px rgba(255,95,168,.45)}
+.btn.ghost{background:transparent;color:var(--pink);border:2px dashed var(--pink)}
+.btn.ghost:hover{background:rgba(255,95,168,.12);box-shadow:none}
+/* === ШАПКА === */
+header{position:sticky;top:0;z-index:10;background:rgba(18,8,18,.86);backdrop-filter:blur(8px);border-bottom:1px solid #33183a}
+.nav{display:flex;justify-content:space-between;align-items:center;max-width:1100px;margin:0 auto;padding:14px 20px}
+.logo{font-size:24px;color:var(--cream);text-decoration:none}
+.logo b{color:var(--pink)}
+.logo small{display:block;font:9px Verdana;letter-spacing:4px;color:var(--lilac)}
+nav a{color:var(--cream);text-decoration:none;margin-left:26px;font-weight:600;transition:.2s}
+nav a:hover{color:var(--pink)}
+/* === ГЛАВНЫЙ ЭКРАН === */
+.hero{position:relative;padding:70px 0 90px;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center}
+.tag{display:inline-block;border:2px dashed var(--pink);color:var(--pink2);border-radius:999px;padding:6px 18px;font-size:13px;font-weight:700;transform:rotate(-2deg);margin-bottom:22px}
+.hero h1{font-size:54px;margin-bottom:18px}
+.hero h1 span{color:var(--pink);display:inline-block;animation:shake 3.2s ease-in-out infinite}
+.hero p{color:#d8b9cc;font-size:18px;max-width:460px;margin-bottom:30px}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:26px}
+.proofs{display:flex;gap:10px;flex-wrap:wrap}
+.proofs span{background:var(--card);border:1px solid #3d1f44;border-radius:999px;padding:7px 14px;font-size:13px;color:var(--mint)}
+/* стаканчик в «капле», которая дышит; рядом положи файл bubble-tea.png */
+.cup-zone{position:relative;text-align:center}
+.cup-frame{width:min(380px,92%);margin:0 auto;aspect-ratio:1;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 30% 25%,#3a1a40,#1d0d20 72%);border:3px solid #43204b;animation:blob 9s ease-in-out infinite}
+.cup-frame img{width:78%;border-radius:24px;animation:bob 4s ease-in-out infinite}
+.sticker{position:absolute;background:var(--mint);color:#0c2b20;font-weight:800;font-size:13px;padding:8px 14px;border-radius:14px;transform:rotate(8deg)}
+.bub{position:absolute;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffb3d6,#ff5fa8);animation:float 6s ease-in-out infinite}
+/* === БЕГУЩАЯ СТРОКА === */
+.ticker{background:var(--pink);color:#2b0718;overflow:hidden;padding:12px 0;white-space:nowrap;transform:rotate(-1.3deg) scale(1.02)}
+.ticker div{display:inline-block;animation:slide 20s linear infinite}
+.ticker span{margin:0 22px;font-size:14px;font-weight:900;letter-spacing:2px;text-transform:uppercase}
+/* === ПРЕИМУЩЕСТВА === */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.card{background:var(--card);border:1px solid #38183e;border-radius:26px;padding:28px 26px;transition:.3s}
+.card:hover{transform:translateY(-8px) rotate(-1deg);border-color:var(--pink);box-shadow:0 18px 40px rgba(255,95,168,.18)}
+.card:nth-child(2){transform:rotate(.8deg)}
+.card:nth-child(2):hover{transform:translateY(-8px) rotate(.8deg)}
+.num{font-family:"Arial Black";font-size:38px;color:transparent;-webkit-text-stroke:1.5px var(--pink)}
+.ico{font-size:34px;display:block;margin:8px 0}
+.card h3{font-size:18px;color:var(--pink2);margin-bottom:10px}
+.card p{font-size:14.5px;color:#cfaec2}
+.card a{color:var(--mint)}
+/* === СЕКРЕТНОЕ МЕНЮ: работаем на чистом CSS, без скриптов === */
+.secret{background:#1a0c1d}
+.secret-box{max-width:640px;margin:0 auto;text-align:center;border:2px dashed var(--pink);border-radius:30px;padding:44px 28px}
+.key{font-size:44px}
+#code{display:none}
+.code-btn{cursor:pointer;display:inline-block;background:var(--pink);color:#2b0718;font-weight:800;padding:14px 30px;border-radius:999px;transition:.25s;margin-top:18px}
+.code-btn:hover{transform:scale(1.06) rotate(-1deg);box-shadow:0 10px 26px rgba(255,95,168,.4)}
+.s2{display:none}
+#code:checked ~ .code-btn{background:#3d1f44;color:var(--pink2)}
+#code:checked ~ .code-btn .s1{display:none}
+#code:checked ~ .code-btn .s2{display:inline}
+.open-list{display:none;margin-top:26px}
+#code:checked ~ .open-list{display:block;animation:pop .45s ease}
+.code-word{font-family:"Courier New",monospace;font-size:40px;color:var(--mint);letter-spacing:8px;margin-bottom:18px}
+.open-list ul{list-style:none;text-align:left;display:grid;gap:10px}
+.open-list li{display:flex;justify-content:space-between;gap:12px;background:#120812;border-radius:14px;padding:12px 18px;font-size:14.5px}
+.open-list b{color:var(--pink)}
+.hint{font-size:12.5px;color:#8f6f84;margin-top:16px}
+/* === ЦЕНЫ === */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.plan{background:var(--card);border:1px solid #38183e;border-radius:28px;padding:32px 26px;text-align:center;display:flex;flex-direction:column;transition:.3s}
+.plan:hover{transform:translateY(-6px);border-color:var(--lilac)}
+.plan.hit{background:linear-gradient(180deg,#33153a,#221126);border:2px solid var(--pink);transform:scale(1.04)}
+.badge{background:var(--pink);color:#2b0718;font-size:11px;font-weight:900;letter-spacing:2px;padding:5px 14px;border-radius:999px;margin-bottom:14px}
+.plan h3{font-size:19px;color:var(--pink2)}
+.price{font-family:"Arial Black";font-size:42px;margin:12px 0}
+.price small{font-size:16px;color:#a98b9d}
+.plan ul{list-style:none;margin:6px 0 24px;flex:1}
+.plan li{font-size:14px;color:#cfaec2;padding:7px 0;border-bottom:1px dashed #3d1f44}
+.plan li:last-child{border:none}
+/* === ОТЗЫВЫ: стилизация под переписку === */
+.chat{display:grid;gap:20px;max-width:660px;margin:0 auto}
+.msg{background:var(--card);border:1px solid #38183e;border-radius:22px 22px 22px 6px;padding:22px 26px;font-size:15px;color:#e6cddd;position:relative}
+.msg:nth-child(2){border-radius:22px 22px 6px 22px;margin-left:60px;background:#2a1130}
+.msg b{display:block;color:var(--pink);margin-bottom:6px;font-size:13px;letter-spacing:1px}
+.msg::after{content:"💬";position:absolute;top:-14px;left:-8px;font-size:22px}
+/* === ЗАЯВКА (форма-заглушка) === */
+.order .box{background:var(--card);border:1px solid #38183e;border-radius:34px;padding:54px 26px;text-align:center}
+.order form{display:flex;flex-direction:column;align-items:center;gap:14px;margin-top:8px}
+.order input{background:#1a0c1d;border:2px solid #43204b;border-radius:999px;color:var(--cream);padding:13px 22px;font-size:15px;width:min(300px,86%);outline:none}
+.order input:focus{border-color:var(--pink)}
+/* === ПОДВАЛ === */
+footer{border-top:1px solid #33183a;padding:46px 0 30px}
+.foot{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}
+.foot h4{color:var(--pink2);margin-bottom:10px;font-size:13px;letter-spacing:2px;text-transform:uppercase}
+.foot p,.foot a{color:#b391a6;font-size:14px;text-decoration:none;display:block;margin-bottom:6px}
+.foot a:hover{color:var(--pink)}
+.socials a{display:inline-flex;width:40px;height:40px;border-radius:50%;background:#2a1130;border:1px solid #43204b;align-items:center;justify-content:center;margin-right:8px;font-weight:800;color:var(--pink2);transition:.2s}
+.socials a:hover{background:var(--pink);color:#2b0718;transform:translateY(-3px)}
+.copy{text-align:center;color:#77566b;font-size:12.5px;margin-top:36px}
+/* === АНИМАЦИИ === */
+@keyframes shake{0%,100%{transform:rotate(0)}25%{transform:rotate(-2.5deg)}75%{transform:rotate(2.5deg)}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes float{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-18px) scale(1.06)}}
+@keyframes slide{to{transform:translateX(-50%)}}
+@keyframes pop{from{opacity:0;transform:translateY(14px) scale(.96)}to{opacity:1;transform:none}}
+@keyframes blob{0%,100%{border-radius:42% 58% 55% 45%/45% 42% 58% 55%}50%{border-radius:55% 45% 42% 58%/58% 55% 45% 42%}}
+/* === АДАПТИВ И УВАЖЕНИЕ К НАСТРОЙКАМ === */
+@media(max-width:840px){
+.hero .wrap{grid-template-columns:1fr;text-align:center}
+.hero p{margin:0 auto 30px}
+.cta-row,.proofs{justify-content:center}
+.cards,.plans{grid-template-columns:1fr}
+.plan.hit{transform:none}
+.hero h1{font-size:38px}
+.msg:nth-child(2){margin-left:0}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<!-- ШАПКА: логотип и меню из трёх пунктов -->
+<header>
+  <div class="nav">
+    <a class="logo" href="#">БУЛЬ<b>БА</b><small>bubble tea • mochi</small></a>
+    <nav>
+      <a href="#why">Почему мы</a>
+      <a href="#secret">Секретное меню</a>
+      <a href="#prices">Цены</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ГЛАВНЫЙ ЭКРАН: слоган, кнопка и стаканчик -->
+<section class="hero">
+  <!-- летающие пузырьки тапиоки для атмосферы -->
+  <i class="bub" style="width:26px;height:26px;top:12%;left:5%"></i>
+  <i class="bub" style="width:14px;height:14px;top:70%;left:9%;animation-delay:1.2s"></i>
+  <i class="bub" style="width:20px;height:20px;top:20%;right:7%;animation-delay:2s"></i>
+  <i class="bub" style="width:12px;height:12px;top:80%;right:12%;animation-delay:.6s"></i>
+  <div class="wrap">
+    <div>
+      <span class="tag">тапиока • мочи • хорошее настроение</span>
+      <h1>Встряхни свой <span>перерыв</span>!</h1>
+      <p>Булочка тянучка, шарики тапиоки и мочи, ради которых хочется бежать с урока. Хватай большой стакан и булькай на здоровье!</p>
+      <div class="cta-row">
+        <a class="btn" href="#order">Оставить заявку</a>
+        <a class="btn ghost" href="#secret">Хочу секретное меню</a>
+      </div>
+      <div class="proofs"><span>тапиока варится каждые 4 часа</span><span>скидка 20% по студенческому</span></div>
+    </div>
+    <!-- КАРТИНКА: положи файл bubble-tea.png рядом с index.html -->
+    <div class="cup-zone">
+      <div class="cup-frame"><img src="heros.jpeg" alt="Фирменный бабл-ти БУЛЬБА с тапиокой"></div>
+      <span class="sticker" style="top:4%;right:2%">новинка: мочи!</span>
+    </div>
+  </div>
+</section>
+
+<!-- БЕГУЩАЯ СТРОКА между экранами -->
+<div class="ticker"><div>
+  <span>встряхни свой перерыв</span><span>✦</span><span>бабл-ти</span><span>✦</span><span>мочи</span><span>✦</span><span>тапиока всегда свежая</span><span>✦</span><span>секретное меню</span><span>✦</span><span>скидка 20% по студенческому</span><span>✦</span>
+  <span>встряхни свой перерыв</span><span>✦</span><span>бабл-ти</span><span>✦</span><span>мочи</span><span>✦</span><span>тапиока всегда свежая</span><span>✦</span><span>секретное меню</span><span>✦</span><span>скидка 20% по студенческому</span><span>✦</span>
+</div></div>
+
+<!-- ПОЧЕМУ МЫ: три карточки преимуществ -->
+<section id="why">
+  <div class="wrap">
+    <h2>Почему <em>мы</em></h2>
+    <p class="sub">Три причины свернуть с маршрута и зайти на бульк.</p>
+    <div class="cards">
+      <div class="card"><span class="num">01</span><span class="ico">⏳</span><h3>Тапиока варится каждые 4 часа</h3><p>Никаких шариков «со вчера». Новая порция утром, днём и вечером: всегда мягкая, тёплая и тянучая.</p></div>
+      <div class="card"><span class="num">02</span><span class="ico">🎓</span><h3>Скидка 20% по студенческому</h3><p>Покажи студенческий или справку школьника на кассе и получи скидку на всё меню. Каждый день, без условий мелким шрифтом.</p></div>
+      <div class="card"><span class="num">03</span><span class="ico">🤫</span><h3>Секретное меню</h3><p>Назови бариста кодовое слово и открой напитки, которых нет на витрине. Слово уже ждёт тебя <a href="#secret">ниже</a>.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- СЕКРЕТНОЕ МЕНЮ: кодовое слово открывается по клику, чистый CSS -->
+<section id="secret" class="secret">
+  <div class="wrap">
+    <h2 style="text-align:center">Секретное <em>меню</em></h2>
+    <p class="sub" style="text-align:center;margin-left:auto;margin-right:auto">Для тех, кто в теме. Выучи слово, назови его на кассе и получи напитки, которых нет в общем списке.</p>
+    <div class="secret-box">
+      <span class="key">🗝️</span>
+      <p style="color:#d8b9cc;margin-top:12px">Внутри спрятаны 3 напитка и 1 десерт. Нажми, если готов хранить тайну.</p>
+      <input type="checkbox" id="code">
+      <label class="code-btn" for="code"><span class="s1">показать кодовое слово</span><span class="s2">спрятать слово</span></label>
+      <div class="open-list">
+        <div class="code-word">«БУЛЬКНИ»</div>
+        <ul>
+          <li><span><b>Розовая луна</b> личи, клубника, тапиока</span><span>320 ₽</span></li>
+          <li><span><b>Матча-бульк</b> матча на кокосовом молоке</span><span>340 ₽</span></li>
+          <li><span><b>Драконий пунш</b> питахайя и манго, со льдом или горячий</span><span>350 ₽</span></li>
+          <li><span><b>Мочи-сюрприз</b> 3 шарика, вкус выбирает бариста</span><span>270 ₽</span></li>
+        </ul>
+        <p class="hint">За кодовое слово дарим горсть тапиоки в любой стакан. Тс-с, никому.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ЦЕНЫ: три тарифа, средний подсвечен как хит -->
+<section id="prices">
+  <div class="wrap">
+    <h2>Наши <em>цены</em></h2>
+    <p class="sub">А со студенческим всё становится ещё вкуснее: минус 20% на кассе.</p>
+    <div class="plans">
+      <div class="plan"><h3>Классик</h3><div class="price">250 <small>₽</small></div><ul><li>0.4 л на молоке или воде</li><li>сироп на выбор</li><li>тапиока или желе</li></ul><a class="btn ghost" href="#order">выбрать</a></div>
+      <div class="plan hit"><span class="badge">хит перерыва</span><h3>Большой бульк</h3><div class="price">320 <small>₽</small></div><ul><li>0.6 л фирменного чая</li><li>топпинги без ограничений</li><li>секретный сироп недели</li></ul><a class="btn" href="#order">хочу этот</a></div>
+      <div class="plan"><h3>Мочи-сет</h3><div class="price">450 <small>₽</small></div><ul><li>большой бабл-ти</li><li>4 мочи разных вкусов</li><li>хватит на всю компанию</li></ul><a class="btn ghost" href="#order">взять на всех</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ОТЗЫВЫ: два сообщения от нашей аудитории -->
+<section id="reviews">
+  <div class="wrap">
+    <h2>Отзывы с <em>переменок</em></h2>
+    <p class="sub">Собрано прямо у кассы. Имена настоящие, ну почти.</p>
+    <div class="chat">
+      <div class="msg"><b>Соня, 16 лет</b>Подсела на «Розовую луну» из секретного меню. Бариста уже узнают меня по звону брелков на рюкзаке 💗</div>
+      <div class="msg"><b>Артём, 2-й курс</b>Со студенческим большой стакан выходит дешевле кофе из автомата. Свежесть тапиоки проверял по таймеру: всё честно.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ЗАЯВКА: форма-заглушка, никуда не отправляет -->
+<section id="order" class="order">
+  <div class="wrap"><div class="box">
+    <h2>Оставь <em>заявку</em></h2>
+    <p class="sub" style="margin-left:auto;margin-right:auto">Забегай после уроков или пар, а пока оставь контакт, чтобы первым узнавать про новые вкусы.</p>
+    <form action="#" method="post">
+      <input type="text" placeholder="твой ник или телеграм">
+      <button class="btn" type="submit">хочу бульк!</button>
+    </form>
+    <p class="hint">Кнопка пока учится: настоящие заказы принимаются у кассы на бульваре Бульбочек, 7.</p>
+  </div></div>
+</section>
+
+<!-- ПОДВАЛ: контакты, соцсети, копирайт -->
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="logo" href="#">БУЛЬ<b>БА</b><small>bubble tea • mochi</small></a>
+        <p style="margin-top:10px">встряхни свой перерыв</p>
+      </div>
+      <div>
+        <h4>Контакты</h4>
+        <p>бульвар Бульбочек, 7</p>
+        <p>каждый день с 9:00 до 22:00</p>
+        <a href="tel:+79990000000">+7 999 000-00-00</a>
+        <a href="mailto:hi@bulba.tea">hi@bulba.tea</a>
+      </div>
+      <div>
+        <h4>Мы в соцсетях</h4>
+        <div class="socials"><a href="#">TG</a><a href="#">VK</a><a href="#">YT</a></div>
+        <p>конкурсы и секреты каждую неделю</p>
+      </div>
+    </div>
+    <p class="copy">© 2026 БУЛЬБА. Все права булькают. Тапиока свежая, пока ей не исполнилось 4 часа.</p>
+  </div>
+</footer>
+
+</body>
+</html>
